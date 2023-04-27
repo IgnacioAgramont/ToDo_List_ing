@@ -1,19 +1,20 @@
 package bo.edu.ucb.todo.api;
 import java.util.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.*;
 import bo.edu.ucb.todo.dto.*;
 import bo.edu.ucb.todo.bl.*;
 @RestController
+@CrossOrigin(origins = "*")
 class TodoApi {
 
     private List<TaskDto> tasks = new ArrayList<>();
 
+    /**
+     * Este endpoint retorna todas las tareas
+     * @param token El token JWT que se obtuvo al autenticar la aplicación
+     * @return
+     */
     @GetMapping("/api/v1/task")
     public ResponseDto<List<TaskDto>> getAllTasks(
         @RequestHeader("Authorization") String token) {
@@ -31,6 +32,12 @@ class TodoApi {
         return response;
     }
 
+    /**
+     * Este endpoint obitene el detalle de una tarea por ID
+     * @param id La llave primaria de la tarea
+     * @param token El token de autenticación
+     * @return
+     */
     @GetMapping("/api/v1/task/{idTask}")
     public ResponseDto<TaskDto> getTaskById( @PathVariable("idTask") Integer id, @RequestHeader("Authorization") String token) {
         ResponseDto<TaskDto> response = new ResponseDto<>();
@@ -61,7 +68,14 @@ class TodoApi {
         }
     }
 
-    @PutMapping("/api/v1/task/{idtask}")
+    /**
+     * Actualiza una tarea por id de tarea.
+     * @param idTask La llave primaria de la tarea
+     * @param newTask Los nuevos datos para la tarea
+     * @param token El token que se obtuvo en la autenticación
+     * @return
+     */
+    @PutMapping("/api/v1/task/{idTask}")
     public ResponseDto<TaskDto> updateTaskById( @PathVariable Integer idTask, @RequestBody TaskDto newTask, @RequestHeader("Authorization") String token) {
         ResponseDto<TaskDto> response = new ResponseDto<>();
         AuthBl authBl = new AuthBl();
@@ -96,6 +110,12 @@ class TodoApi {
         }
     }
 
+    /**
+     * Este metodo permite crear una tarea.
+     * @param task Todos los datos de una tarea.
+     * @param token El token obtenido en la autenticación
+     * @return Retorna un mensaje: "Task createed" o error en su defecto.
+     */
     @PostMapping("/api/v1/task")
     public ResponseDto<String> createTask(@RequestBody TaskDto task, @RequestHeader("Authorization") String token) {
         ResponseDto<String> response = new ResponseDto<>();

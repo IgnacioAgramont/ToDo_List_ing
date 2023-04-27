@@ -6,7 +6,12 @@ public  class LabelDto {
 
     public LabelDto() {
     }
-    
+
+    public LabelDto(Integer labelId, String name) {
+        this.labelId = labelId;
+        this.name = name;
+    }
+
     public Integer getLabelId() {
         return this.labelId;
     }
