@@ -38,10 +38,10 @@ public  class ResponseDto<T> {
     @Override
     public String toString() {
         return "{" +
-            " code='" + getCode() + "'" +
-            ", response='" + getResponse() + "'" +
-            ", errorMessage='" + getErrorMessage() + "'" +
-            "}";
+                " code='" + getCode() + "'" +
+                ", response='" + getResponse() + "'" +
+                ", errorMessage='" + getErrorMessage() + "'" +
+                "}";
     }
 
 }

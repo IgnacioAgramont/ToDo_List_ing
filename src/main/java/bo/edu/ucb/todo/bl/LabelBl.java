@@ -54,4 +54,13 @@ public class LabelBl {
         }
         labels.add(label);
     }
+
+    public void deleteLabel(int labelId) {
+        //Buscamos el elemento en la lista
+        LabelDto label = labels.stream()
+                .filter(t -> t.getLabelId().equals(labelId))
+                .findFirst()
+                .orElse(null);
+        labels.remove(label);
+    }
 }

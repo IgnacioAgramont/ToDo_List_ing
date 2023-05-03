@@ -32,8 +32,8 @@ public class LoginDto {
     @Override
     public String toString() {
         return "{" +
-            " username='" + getUsername() + "'" +
-            ", password='" + getPassword() + "'" +
-            "}";
+                " username='" + getUsername() + "'" +
+                ", password='" + getPassword() + "'" +
+                "}";
     }
 }

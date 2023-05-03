@@ -17,7 +17,7 @@ class TodoApi {
      */
     @GetMapping("/api/v1/task")
     public ResponseDto<List<TaskDto>> getAllTasks(
-        @RequestHeader("Authorization") String token) {
+            @RequestHeader("Authorization") String token) {
         AuthBl authBl = new AuthBl();
         if (!authBl.validateToken(token)) {
             ResponseDto<List<TaskDto>> response = new ResponseDto<>();
@@ -99,10 +99,11 @@ class TodoApi {
             return response;
         } else {
             // Actualizamos los atributos de task con los de newTask
-            
+
             task.setDescription(newTask.getDescription());
             task.setDate(newTask.getDate());
             task.setLabelIds(newTask.getLabelIds());
+            task.setCompleted(newTask.getCompleted());
             // Si existe retornamos el elemento
             response.setCode("0000");
             response.setResponse(task);
@@ -135,7 +136,7 @@ class TodoApi {
             task.setTaskId(1);
         }
         tasks.add(task);
-        
+
         response.setCode("0000");
         response.setResponse("Task created");
         return response;

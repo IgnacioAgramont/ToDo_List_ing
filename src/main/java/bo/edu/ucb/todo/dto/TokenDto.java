@@ -7,7 +7,7 @@ public class TokenDto {
 
     public TokenDto() {
     }
-    
+
 
     public String getAuthToken() {
         return this.authToken;
@@ -29,9 +29,9 @@ public class TokenDto {
     @Override
     public String toString() {
         return "{" +
-            " authToken='" + getAuthToken() + "'" +
-            ", refreshToken='" + getRefreshToken() + "'" +
-            "}";
+                " authToken='" + getAuthToken() + "'" +
+                ", refreshToken='" + getRefreshToken() + "'" +
+                "}";
     }
 
 

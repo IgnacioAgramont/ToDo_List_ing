@@ -31,9 +31,9 @@ public  class LabelDto {
     @Override
     public String toString() {
         return "{" +
-            " labelId='" + getLabelId() + "'" +
-            ", name='" + getName() + "'" +
-            "}";
+                " labelId='" + getLabelId() + "'" +
+                ", name='" + getName() + "'" +
+                "}";
     }
 
 }

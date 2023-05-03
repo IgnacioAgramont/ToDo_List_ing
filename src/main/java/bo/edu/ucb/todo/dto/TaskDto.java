@@ -6,6 +6,9 @@ public class TaskDto {
     private Integer taskId;
     private String description;
     private Date date;
+
+    private boolean completed;
+
     private List<Integer> labelIds;
 
     public TaskDto() {
@@ -36,6 +39,10 @@ public class TaskDto {
         this.date = date;
     }
 
+    public boolean getCompleted() { return this.completed; }
+
+    public void setCompleted(boolean completed) { this.completed = completed; }
+
     public List<Integer> getLabelIds() {
         return this.labelIds;
     }
@@ -48,11 +55,12 @@ public class TaskDto {
     @Override
     public String toString() {
         return "{" +
-            " taskId='" + getTaskId() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", date='" + getDate() + "'" +
-            ", labelIds='" + getLabelIds() + "'" +
-            "}";
+                " taskId='" + getTaskId() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", date='" + getDate() + "'" +
+                ", completed='" + getCompleted() + "'" +
+                ", labelIds='" + getLabelIds() + "'" +
+                "}";
     }
 
 

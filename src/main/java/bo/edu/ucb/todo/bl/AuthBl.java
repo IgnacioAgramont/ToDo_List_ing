@@ -16,7 +16,7 @@ public class AuthBl {
 
     public TokenDto login(LoginDto login) {
         if ("jperez".equals(login.getUsername()) &&
-        "12345678".equals(login.getPassword())) {
+                "12345678".equals(login.getPassword())) {
             TokenDto tokenDto = new TokenDto();
             tokenDto.setAuthToken(generateToken(100, "Juan Perez", "AUTH", 30));
             tokenDto.setRefreshToken(generateToken(100, "Juan Perez", "REFRESH", 60));
@@ -31,12 +31,12 @@ public class AuthBl {
         try {
             Algorithm algorithm = Algorithm.HMAC256(KEY);
             String token = JWT.create()
-                .withIssuer("www.ucb.edu.bo")
-                .withClaim("userId", userId)
-                .withClaim("type", type)
-                .withClaim("name", name)
-                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * minutes)) // 24 horas
-                .sign(algorithm);
+                    .withIssuer("www.ucb.edu.bo")
+                    .withClaim("userId", userId)
+                    .withClaim("type", type)
+                    .withClaim("name", name)
+                    .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * minutes)) // 24 horas
+                    .sign(algorithm);
             return token;
         } catch (JWTCreationException exception){
             System.out.println("Error al generar el token " + userId + " " + name + " " + type + " " + minutes);
@@ -52,15 +52,15 @@ public class AuthBl {
         try {
             Algorithm algorithm = Algorithm.HMAC256(KEY);
             JWTVerifier verifier = JWT.require(algorithm)
-                // specify an specific claim validations
-                .withIssuer("www.ucb.edu.bo")
-                // reusable verifier instance
-                .build();
+                    // specify an specific claim validations
+                    .withIssuer("www.ucb.edu.bo")
+                    // reusable verifier instance
+                    .build();
             decodedJWT = verifier.verify(token);
             return true;
         } catch (JWTVerificationException exception){
             System.err.print("Token invalido: " + exception.getMessage());
             return false;
-        } 
+        }
     }
 }

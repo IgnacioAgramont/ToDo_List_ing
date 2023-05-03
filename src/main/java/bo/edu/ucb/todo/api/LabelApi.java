@@ -130,4 +130,21 @@ public class LabelApi {
         response.setResponse("Label created");
         return response;
     }
+
+    // delete label by id
+    @DeleteMapping("/api/v1/label/{idLabel}")
+    public ResponseDto<String> deleteLabel(@RequestHeader("Authorization") String token, @PathVariable("idLabel") Integer idLabel) {
+        ResponseDto<String> response = new ResponseDto<>();
+        AuthBl authBl = new AuthBl();
+        if (!authBl.validateToken(token)) {
+            response.setCode("0001");
+            response.setResponse(null);
+            response.setErrorMessage("Invalid token");
+            return response;
+        }
+        this.labelBl.deleteLabel(idLabel);
+        response.setCode("0000");
+        response.setResponse("Label deleted");
+        return response;
+    }
 }
